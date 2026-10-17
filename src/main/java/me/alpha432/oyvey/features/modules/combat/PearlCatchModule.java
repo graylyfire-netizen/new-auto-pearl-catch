@@ -171,7 +171,7 @@ public class PearlCatchModule extends Module {
 
         Request request = new Request(
                 pearlPos, pearlVel,
-                v3(mc.player.getEyePosition()), shooterMomentum(), mc.player.onGround(),
+                v3(mc.player.getEyePosition()), v3(shooterMomentum()), mc.player.onGround(),
                 lead, win, hitRadius.getValue(), pick.getValue(), bursts, clearance, validTicks);
         return InterceptSolver.solve(request);
     }

@@ -89,6 +89,23 @@ sourcesJar {
     dependsOn(generateBuildConfig)
 }
 
+// The solver checks are a dependency-free harness (see the command in README.md), not JUnit tests, so the
+// `test` task has nothing to discover and would otherwise fail on Gradle 9.
+test {
+    failOnNoDiscoveredTests = false
+}
+
+tasks.register('solverCheck', JavaExec) {
+    group = 'verification'
+    description = 'Runs the standalone InterceptSolver checks.'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'me.alpha432.oyvey.util.prediction.InterceptSolverCheck'
+}
+
+tasks.named('check') {
+    dependsOn 'solverCheck'
+}
+
 jar {
     from("LICENSE") {
         rename { "${it}_${archives_base_name}" }
