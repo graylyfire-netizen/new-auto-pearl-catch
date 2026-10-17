@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.alpha432.oyvey.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "network.MixinConnection"
+  ],
+  "client": [
+    "entity.MixinClientPlayerEntity",
+    "input.MixinKeyboardHandler",
+    "input.MixinMouseHandler",
+    "network.MixinClientPacketListener",
+    "render.MixinChatComponent",
+    "render.MixinLevelRenderer",
+    "render.MixinDeltaTrackerTimer",
+    "render.gui.MixinCommandSuggestions",
+    "render.gui.MixinGui"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
