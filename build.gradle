@@ -102,8 +102,15 @@ tasks.register('solverCheck', JavaExec) {
     mainClass = 'me.alpha432.oyvey.util.prediction.InterceptSolverCheck'
 }
 
+tasks.register('catchTrackCheck', JavaExec) {
+    group = 'verification'
+    description = 'Runs the standalone CatchTrack attempt-lifecycle checks.'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'me.alpha432.oyvey.util.prediction.CatchTrackCheck'
+}
+
 tasks.named('check') {
-    dependsOn 'solverCheck'
+    dependsOn 'solverCheck', 'catchTrackCheck'
 }
 
 jar {
