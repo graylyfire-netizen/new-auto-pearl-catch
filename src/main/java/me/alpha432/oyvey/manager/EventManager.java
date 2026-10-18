@@ -3,6 +3,7 @@ package me.alpha432.oyvey.manager;
 import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.event.Stage;
 import me.alpha432.oyvey.event.impl.entity.DeathEvent;
+import me.alpha432.oyvey.event.impl.entity.player.PreTickEvent;
 import me.alpha432.oyvey.event.impl.entity.player.TickEvent;
 import me.alpha432.oyvey.event.impl.entity.player.UpdateWalkingPlayerEvent;
 import me.alpha432.oyvey.event.impl.input.KeyInputEvent;
@@ -26,6 +27,13 @@ public class EventManager extends Feature {
 
     public void onUnload() {
         EVENT_BUS.unregister(this);
+    }
+
+    @Subscribe
+    public void onPreTick(PreTickEvent event) {
+        if (nullCheck())
+            return;
+        OyVey.moduleManager.onPreTick();
     }
 
     @Subscribe

@@ -48,6 +48,13 @@ public class Module extends Feature implements Jsonable, Toggleable {
     public void onLoad() {
     }
 
+    /**
+     * Start of the client tick, before the movement packet is sent. Interactions with the server (slot changes,
+     * item use) belong here; {@link #onTick()} runs after the movement packet.
+     */
+    public void onPreTick() {
+    }
+
     public void onTick() {
     }
 

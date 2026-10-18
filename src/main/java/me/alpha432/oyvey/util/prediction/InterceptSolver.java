@@ -18,8 +18,9 @@ import java.util.Optional;
  *       the aim has to cancel the sideways drift of a moving player.</li>
  *   <li><b>Latency:</b> the charge does not spawn on the server until about {@code latencyTicks} after the client's
  *       view of the pearl, so the <i>pearl</i> is predicted forward that far. The <i>shooter</i> is not: the use-item
- *       packet is sent right after this tick's movement packet, so the server spawns the charge at the position
- *       that packet reported and applies the movement it implies (see {@link Request#playerVel()}).</li>
+ *       packet is sent at the start of the client tick, before that tick's movement packet, so the server spawns
+ *       the charge at the position the <i>previous</i> movement packet reported (which is the client's current
+ *       position at that moment) and applies the movement that packet implied (see {@link Request#playerVel()}).</li>
  * </ul>
  *
  * <h3>Solving</h3>

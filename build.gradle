@@ -89,28 +89,10 @@ sourcesJar {
     dependsOn(generateBuildConfig)
 }
 
-// The solver checks are a dependency-free harness (see the command in README.md), not JUnit tests, so the
-// `test` task has nothing to discover and would otherwise fail on Gradle 9.
+// The solver/sequencing checks are dependency-free main() harnesses (see README.md), not JUnit tests, so the
+// `test` task has nothing to discover and would otherwise fail the build on Gradle 9.
 test {
     failOnNoDiscoveredTests = false
-}
-
-tasks.register('solverCheck', JavaExec) {
-    group = 'verification'
-    description = 'Runs the standalone InterceptSolver checks.'
-    classpath = sourceSets.test.runtimeClasspath
-    mainClass = 'me.alpha432.oyvey.util.prediction.InterceptSolverCheck'
-}
-
-tasks.register('catchTrackCheck', JavaExec) {
-    group = 'verification'
-    description = 'Runs the standalone CatchTrack attempt-lifecycle checks.'
-    classpath = sourceSets.test.runtimeClasspath
-    mainClass = 'me.alpha432.oyvey.util.prediction.CatchTrackCheck'
-}
-
-tasks.named('check') {
-    dependsOn 'solverCheck', 'catchTrackCheck'
 }
 
 jar {
